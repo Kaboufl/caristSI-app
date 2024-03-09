@@ -1,19 +1,22 @@
 package org.esicad.btssio2aslam.caristsi.caristsi.data
 
+import android.util.Log
 import org.esicad.btssio2aslam.caristsi.caristsi.data.model.LoggedInUser
 import java.io.IOException
+
 
 /**
  * Class that handles authentication w/ login credentials and retrieves user information.
  */
 class LoginDataSource {
 
-    fun login(username: String, password: String): Result<LoggedInUser> {
+    suspend fun login(username: String, password: String): Result<LoggedInUser> {
         try {
-            // TODO: handle loggedInUser authentication
-            val fakeUser = LoggedInUser(java.util.UUID.randomUUID().toString(), "Jane Doe")
-            return Result.Success(fakeUser)
+            val map = mapOf("login" to username, "password" to password)
+            val result = ApiClient.loginService.login(map)
+            return Result.Success(result)
         } catch (e: Throwable) {
+            e.localizedMessage?.let { Log.e("E", it) }
             return Result.Error(IOException("Error logging in", e))
         }
     }

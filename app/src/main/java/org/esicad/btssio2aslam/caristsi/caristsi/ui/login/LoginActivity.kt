@@ -1,20 +1,19 @@
 package org.esicad.btssio2aslam.caristsi.caristsi.ui.login
 
 import android.app.Activity
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.annotation.StringRes
-import androidx.appcompat.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.Toast
-import org.esicad.btssio2aslam.caristsi.caristsi.databinding.ActivityLoginBinding
-
+import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import org.esicad.btssio2aslam.caristsi.caristsi.R
+import org.esicad.btssio2aslam.caristsi.caristsi.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
 
@@ -101,12 +100,13 @@ class LoginActivity : AppCompatActivity() {
     private fun updateUiWithUser(model: LoggedInUserView) {
         val welcome = getString(R.string.welcome)
         val displayName = model.displayName
-        // TODO : initiate successful logged in experience
         Toast.makeText(
             applicationContext,
             "$welcome $displayName",
             Toast.LENGTH_LONG
         ).show()
+
+
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {

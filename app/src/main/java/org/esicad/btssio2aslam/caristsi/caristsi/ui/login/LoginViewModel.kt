@@ -1,13 +1,15 @@
 package org.esicad.btssio2aslam.caristsi.caristsi.ui.login
 
+import android.util.Log
+import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import android.util.Patterns
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
+import org.esicad.btssio2aslam.caristsi.caristsi.R
 import org.esicad.btssio2aslam.caristsi.caristsi.data.LoginRepository
 import org.esicad.btssio2aslam.caristsi.caristsi.data.Result
-
-import org.esicad.btssio2aslam.caristsi.caristsi.R
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 
@@ -19,13 +21,18 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
 
     fun login(username: String, password: String) {
         // can be launched in a separate asynchronous job
-        val result = loginRepository.login(username, password)
+        viewModelScope.launch {
+            Log.i("C", "login scope launched")
+            val result = loginRepository.login(username, password)
 
-        if (result is Result.Success) {
-            _loginResult.value =
-                LoginResult(success = LoggedInUserView(displayName = result.data.displayName))
-        } else {
-            _loginResult.value = LoginResult(error = R.string.login_failed)
+            if (result is Result.Success) {
+                _loginResult.value =
+                    LoginResult(success = LoggedInUserView(displayName = result.data.nomCarist + " " + result.data.prenomCarist))
+            } else {
+                Log.e("C", "login failed")
+                Log.e("C", result.toString())
+                _loginResult.value = LoginResult(error = R.string.login_failed)
+            }
         }
     }
 
