@@ -10,7 +10,7 @@ import androidx.core.view.WindowInsetsCompat
 import org.esicad.btssio2aslam.caristsi.caristsi.ui.login.LoginActivity
 
 class MainActivity : AppCompatActivity() {
-    lateinit var button : Button;
+    private lateinit var button : Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -20,11 +20,11 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        button = findViewById(R.id.buttonLogin);
+        button = findViewById(R.id.buttonLogin)
         button.setOnClickListener { _ ->
             // Do some work here
-            val intent = Intent(this, LoginActivity::class.java);
-            startActivity(intent);
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
     }
 
