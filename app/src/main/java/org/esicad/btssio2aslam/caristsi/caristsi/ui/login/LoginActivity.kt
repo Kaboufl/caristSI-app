@@ -1,6 +1,7 @@
 package org.esicad.btssio2aslam.caristsi.caristsi.ui.login
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -14,6 +15,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import org.esicad.btssio2aslam.caristsi.caristsi.R
 import org.esicad.btssio2aslam.caristsi.caristsi.databinding.ActivityLoginBinding
+import org.esicad.btssio2aslam.caristsi.caristsi.ui.home.HomeActivity
 
 class LoginActivity : AppCompatActivity() {
 
@@ -105,7 +107,8 @@ class LoginActivity : AppCompatActivity() {
             "$welcome $displayName",
             Toast.LENGTH_LONG
         ).show()
-
+        val intent = Intent(this, HomeActivity::class.java)
+        startActivity(intent)
 
     }
 

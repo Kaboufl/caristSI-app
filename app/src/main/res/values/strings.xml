@@ -12,4 +12,8 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="title_activity_home">HomeActivity</string>
+    <string name="store_package">Entreposer un colis</string>
+    <string name="unstore_package">Destocker un colis</string>
+    <string name="show_packages">Consulter les colis</string>
+    <string name="title_activity_scan_package">ScanPackage</string>
 </resources>

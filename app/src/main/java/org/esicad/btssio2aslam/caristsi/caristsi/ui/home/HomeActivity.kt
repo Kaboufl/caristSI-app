@@ -1,33 +1,21 @@
-package org.esicad.btssio2aslam.caristsi.caristsi
+package org.esicad.btssio2aslam.caristsi.caristsi.ui.home
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import org.esicad.btssio2aslam.caristsi.caristsi.ui.login.LoginActivity
+import org.esicad.btssio2aslam.caristsi.caristsi.R
 
-class MainActivity : AppCompatActivity() {
-    private lateinit var button : Button
+class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_home)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        button = findViewById(R.id.buttonLogin)
-        button.setOnClickListener { _ ->
-            // Do some work here
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
     }
-
-
 }
