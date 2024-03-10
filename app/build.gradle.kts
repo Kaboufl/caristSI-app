@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
+
 }
 
 android {
@@ -50,13 +53,29 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     //Retrofit
     implementation(libs.retrofit)
+    // Gson
     implementation(libs.converter.gson)
 
     //Coroutine
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
 
+    // DataStore
+    implementation(libs.androidx.datastore.preferences)
+    // Hilt (DI)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+
+    // ZXing (Zebra crossing) (QRCode scanner)
+    implementation(libs.zxing.android.embedded)
+    implementation(libs.core)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }

@@ -16,4 +16,5 @@
     <string name="unstore_package">Destocker un colis</string>
     <string name="show_packages">Consulter les colis</string>
     <string name="title_activity_scan_package">ScanPackage</string>
+    <string name="logout">Se déconnecter</string>
 </resources>
