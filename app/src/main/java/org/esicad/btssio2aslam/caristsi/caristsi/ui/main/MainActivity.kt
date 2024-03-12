@@ -1,4 +1,4 @@
-package org.esicad.btssio2aslam.caristsi.caristsi
+package org.esicad.btssio2aslam.caristsi.caristsi.ui.main
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import org.esicad.btssio2aslam.caristsi.caristsi.R
 import org.esicad.btssio2aslam.caristsi.caristsi.ui.login.LoginActivity
 
 class MainActivity : AppCompatActivity() {

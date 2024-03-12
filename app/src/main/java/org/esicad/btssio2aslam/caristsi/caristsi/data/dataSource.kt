@@ -2,49 +2,44 @@ package org.esicad.btssio2aslam.caristsi.caristsi.data
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import dagger.Module
 import okhttp3.OkHttpClient
+import org.esicad.btssio2aslam.caristsi.caristsi.data.jwt.TokenInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 
-object ApiClient {
-    private const val BASE_URL =
-        "http://192.168.1.100:8080"
+private const val BASE_URL =
+    "http://192.168.1.100:8080"
+@Module
+class ApiClient() {
+    @Inject lateinit var interceptor: TokenInterceptor
 
     private val gson: Gson by lazy {
         GsonBuilder().setLenient().create()
     }
 
-    private val httpClientUnauthenticated: OkHttpClient by lazy {
-        OkHttpClient.Builder().build()
+    private val httpClient: OkHttpClient by lazy {
+        OkHttpClient.Builder().addInterceptor(interceptor).build()
     }
-
-    private val httpClientAuthenticated: OkHttpClient by lazy {
-        OkHttpClient.Builder()
-            //.addInterceptor(TokenInterceptor)
-     .build()
-    }
-
     /**
-     * Client Http Retrofit non authentifié (pour le login)
+     * Instance de Retrofit
      */
-    private val retrofitUnauthenticated: Retrofit by lazy {
+    private val retrofitInstance: Retrofit by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .client(httpClientUnauthenticated)
+            .client(httpClient)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
     }
-    private val retrofitAuthenticated: Retrofit by lazy {
-        Retrofit.Builder().baseUrl(BASE_URL).client(httpClientAuthenticated)
-            .addConverterFactory(GsonConverterFactory.create(gson)).build()
-    }
+
 
     val loginService: LoginService by lazy {
-        retrofitUnauthenticated.create(LoginService::class.java)
+        retrofitInstance.create(LoginService::class.java)
     }
 
     val packageService: PackageService by lazy {
-        retrofitAuthenticated.create(PackageService::class.java)
+        retrofitInstance.create(PackageService::class.java)
     }
 }
 

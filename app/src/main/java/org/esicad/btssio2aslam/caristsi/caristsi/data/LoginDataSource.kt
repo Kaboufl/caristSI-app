@@ -9,15 +9,15 @@ import java.io.IOException
  * Class that handles authentication w/ login credentials and retrieves user information.
  */
 class LoginDataSource {
-
+private val api = ApiClient()
     suspend fun login(username: String, password: String): Result<LoggedInUser> {
-        try {
+        return try {
             val map = mapOf("login" to username, "password" to password)
-            val result = ApiClient.loginService.login(map)
-            return Result.Success(result)
+            val result = api.loginService.login(map)
+            Result.Success(result)
         } catch (e: Throwable) {
             e.localizedMessage?.let { Log.e("E", it) }
-            return Result.Error(IOException("Error logging in", e))
+            Result.Error(IOException("Error logging in", e))
         }
     }
 
