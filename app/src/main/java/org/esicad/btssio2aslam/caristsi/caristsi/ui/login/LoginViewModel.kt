@@ -6,12 +6,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.esicad.btssio2aslam.caristsi.caristsi.R
 import org.esicad.btssio2aslam.caristsi.caristsi.data.LoginRepository
 import org.esicad.btssio2aslam.caristsi.caristsi.data.Result
+import javax.inject.Inject
 
-class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
+@HiltViewModel
+class LoginViewModel @Inject constructor(private val loginRepository: LoginRepository) : ViewModel() {
 
     private val _loginForm = MutableLiveData<LoginFormState>()
     val loginFormState: LiveData<LoginFormState> = _loginForm

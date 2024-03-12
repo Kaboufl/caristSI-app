@@ -22,6 +22,7 @@ zxingAndroidEmbedded = "4.1.0"
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
+androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleLivedataKtx" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 core = { module = "com.google.zxing:core", version.ref = "core" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }

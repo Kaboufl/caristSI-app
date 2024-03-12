@@ -23,7 +23,7 @@ val exampleCounterFlow: Flow<String> = dataStore.data
 @Singleton
 class TokenInterceptor @Inject constructor(
     // on injecte le JwtTokenManager à partir de notre mécanisme de DI
-    private val tokenManager: JwtTokenManager,
+    val tokenManager: JwtTokenManager,
 ) : Interceptor {
     companion object {
         const val HEADER_AUTHORIZATION = "Authorization"

@@ -51,6 +51,7 @@ dependencies {
     implementation(libs.androidx.annotation)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
+
     //Retrofit
     implementation(libs.retrofit)
     // Gson
@@ -64,6 +65,7 @@ dependencies {
     implementation(libs.androidx.datastore.preferences)
     // Hilt (DI)
     implementation(libs.hilt.android)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
     kapt(libs.hilt.android.compiler)
 
     // ZXing (Zebra crossing) (QRCode scanner)

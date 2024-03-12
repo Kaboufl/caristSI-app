@@ -12,12 +12,14 @@ import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+
+import dagger.hilt.android.HiltAndroidApp
 import org.esicad.btssio2aslam.caristsi.caristsi.R
 import org.esicad.btssio2aslam.caristsi.caristsi.databinding.ActivityLoginBinding
 import org.esicad.btssio2aslam.caristsi.caristsi.ui.home.HomeActivity
 
-class LoginActivity : AppCompatActivity() {
+@HiltAndroidApp
+class LoginActivity : AppCompatActivity  {
 
     private lateinit var loginViewModel: LoginViewModel
     private lateinit var binding: ActivityLoginBinding
@@ -33,8 +35,7 @@ class LoginActivity : AppCompatActivity() {
         val login = binding.login
         val loading = binding.loading
 
-        loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
-            .get(LoginViewModel::class.java)
+        loginViewModel = viewModel()
 
         loginViewModel.loginFormState.observe(this@LoginActivity, Observer {
             val loginState = it ?: return@Observer

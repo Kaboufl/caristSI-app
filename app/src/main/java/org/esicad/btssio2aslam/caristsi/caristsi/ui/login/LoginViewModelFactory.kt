@@ -11,14 +11,9 @@ import org.esicad.btssio2aslam.caristsi.caristsi.data.LoginRepository
  */
 class LoginViewModelFactory : ViewModelProvider.Factory {
 
-    @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
-            return LoginViewModel(
-                loginRepository = LoginRepository(
-                    dataSource = LoginDataSource()
-                )
-            ) as T
+            return LoginViewModel() as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
