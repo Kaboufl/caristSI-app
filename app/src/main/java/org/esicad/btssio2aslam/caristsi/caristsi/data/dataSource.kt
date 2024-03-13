@@ -2,9 +2,6 @@ package org.esicad.btssio2aslam.caristsi.caristsi.data
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import dagger.Module
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import org.esicad.btssio2aslam.caristsi.caristsi.data.jwt.TokenInterceptor
 import retrofit2.Retrofit
@@ -13,8 +10,6 @@ import javax.inject.Inject
 
 private const val BASE_URL =
     "http://192.168.1.100:8080"
-@Module
-@InstallIn(SingletonComponent::class)
 class ApiClient @Inject constructor(private val interceptor: TokenInterceptor) {
 
 

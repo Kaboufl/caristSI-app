@@ -1,6 +1,5 @@
 package org.esicad.btssio2aslam.caristsi.caristsi.ui.login
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -9,19 +8,20 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 
-import dagger.hilt.android.HiltAndroidApp
+import dagger.hilt.android.AndroidEntryPoint
 import org.esicad.btssio2aslam.caristsi.caristsi.R
 import org.esicad.btssio2aslam.caristsi.caristsi.databinding.ActivityLoginBinding
 import org.esicad.btssio2aslam.caristsi.caristsi.ui.home.HomeActivity
 
-@HiltAndroidApp
-class LoginActivity : AppCompatActivity  {
+@AndroidEntryPoint
+class LoginActivity : AppCompatActivity() {
 
-    private lateinit var loginViewModel: LoginViewModel
+    private val loginViewModel: LoginViewModel by viewModels()
     private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,8 +34,6 @@ class LoginActivity : AppCompatActivity  {
         val password = binding.password
         val login = binding.login
         val loading = binding.loading
-
-        loginViewModel = viewModel()
 
         loginViewModel.loginFormState.observe(this@LoginActivity, Observer {
             val loginState = it ?: return@Observer
@@ -61,7 +59,7 @@ class LoginActivity : AppCompatActivity  {
             if (loginResult.success != null) {
                 updateUiWithUser(loginResult.success)
                 //Complete and destroy login activity once successful
-                setResult(Activity.RESULT_OK)
+                setResult(RESULT_OK)
                 finish()
             }
 

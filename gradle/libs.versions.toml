@@ -1,5 +1,6 @@
 [versions]
 agp = "8.3.0"
+#noinspection GradleDependency
 core = "3.3.3"
 datastorePreferences = "1.0.0"
 hiltAndroid = "2.48"
@@ -20,6 +21,7 @@ retrofit = "2.9.0"
 zxingAndroidEmbedded = "4.1.0"
 
 [libraries]
+androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activity" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleLivedataKtx" }
