@@ -12,6 +12,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import org.esicad.btssio2aslam.caristsi.caristsi.R
 import org.esicad.btssio2aslam.caristsi.caristsi.scan.QRcodeScannerActivity
+import org.esicad.btssio2aslam.caristsi.caristsi.ui.warehouse.WareHouseComposableActivity
 
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +34,11 @@ class HomeActivity : AppCompatActivity() {
         buttonCamera.setOnClickListener {_ ->
             // start new activity
             storePackageIntentLauncher.launch(Intent(this, QRcodeScannerActivity::class.java))
+        }
+
+        val buttonShowPackages = findViewById<Button>(R.id.button_show_packages_list)
+        buttonShowPackages.setOnClickListener {_ ->
+            startActivity(Intent(this,WareHouseComposableActivity::class.java))
         }
     }
 }

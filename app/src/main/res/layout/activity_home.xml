@@ -26,7 +26,7 @@
             app:layout_constraintTop_toBottomOf="@+id/button_store_package" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/button_show_packages_list"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/show_packages"
@@ -44,6 +44,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button3"
+            app:layout_constraintTop_toBottomOf="@+id/button_show_packages_list"
             app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

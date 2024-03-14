@@ -17,4 +17,5 @@
     <string name="show_packages">Consulter les colis</string>
     <string name="title_activity_scan_package">ScanPackage</string>
     <string name="logout">Se déconnecter</string>
+    <string name="title_activity_ware_house">Liste des colis</string>
 </resources>

@@ -21,6 +21,14 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.warehouse.WareHouseComposableActivity"
+            android:exported="false"
+            android:label="@string/title_activity_ware_house"
+            android:theme="@style/Theme.CaristSI" />
+        <activity
+            android:name=".ui.warehouse.WarehouseActivity"
+            android:exported="false" />
+        <activity
             android:name=".scan.QRcodeScannerActivity"
             android:exported="false" />
         <activity
@@ -42,8 +50,8 @@
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="portrait"
-            tools:replace="android:screenOrientation"
-            android:stateNotNeeded="true"/>
+            android:stateNotNeeded="true"
+            tools:replace="android:screenOrientation" />
     </application>
 
 </manifest>
