@@ -1,10 +1,10 @@
 package org.esicad.btssio2aslam.caristsi.caristsi.data.model
 
 /**
- * Data class that captures user information for logged in users retrieved from LoginRepository
+ * Data class that describes package information
  */
 data class Package (
     val idPackage: Number,
     val packageNumber: String,
-    val productReference: String
+    val articleReference: String
 )

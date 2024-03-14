@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 private const val BASE_URL =
     "http://192.168.1.100:8080"
-class ApiClient @Inject constructor(private val interceptor: TokenInterceptor) {
+class ApiClient @Inject constructor(private val interceptor: TokenInterceptor, private val logger: LoggingInterceptor) {
 
 
     private val gson: Gson by lazy {
@@ -18,7 +18,7 @@ class ApiClient @Inject constructor(private val interceptor: TokenInterceptor) {
     }
 
     private val httpClient: OkHttpClient by lazy {
-        OkHttpClient.Builder().addInterceptor(interceptor).build()
+        OkHttpClient.Builder().addInterceptor(logger).addInterceptor(interceptor).build()
     }
     /**
      * Instance de Retrofit

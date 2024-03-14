@@ -1,6 +1,7 @@
 package org.esicad.btssio2aslam.caristsi.caristsi.data.jwt
 
 
+import android.util.Log
 import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -31,11 +32,14 @@ class TokenInterceptor @Inject constructor(
     }
 
     override fun intercept(chain: Interceptor.Chain): Response {
+        Log.i("I", "intercept - start")
         val request = chain.request()
         // si l'URL contient "login", on gère le stockage du token renvoyé
-        if (request.url().encodedPath().contains("/login") && request.method().equals("post")) {
+        if (request.url().encodedPath().contains("/login") && request.method().lowercase() == "post") {
+            Log.i("I", "intercept - treating /login path")
             val response = chain.proceed(request)
             val token = response.header(HEADER_AUTHORIZATION)
+            Log.i("I", "intercept : token value=$token")
             if (token != null && token.isNotBlank()) {
                 runBlocking { tokenManager.saveAccessJwt(token.drop(TOKEN_TYPE.length+1)) }
             }

@@ -1,5 +1,6 @@
 package org.esicad.btssio2aslam.caristsi.caristsi.data.jwt
 
+import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
@@ -17,15 +18,19 @@ class JwtTokenDataStore @Inject constructor(private val dataStore: DataStore<Pre
     }
 
     override suspend fun saveAccessJwt(token: String) {
+        Log.i("I", "saveAccessJwt : $token")
         dataStore.edit { preferences ->
             preferences[ACCESS_JWT_KEY] = token
         }
     }
 
     override suspend fun getAccessJwt(): String? {
-        return dataStore.data.map { preferences ->
-            preferences[ACCESS_JWT_KEY]
-        }.first()
+        val token =
+            dataStore.data.map { preferences ->
+                preferences[ACCESS_JWT_KEY]
+            }.first()
+        Log.i("I", "getAccessJwt : $token")
+        return token
     }
 
     override suspend fun clearAllTokens() {
