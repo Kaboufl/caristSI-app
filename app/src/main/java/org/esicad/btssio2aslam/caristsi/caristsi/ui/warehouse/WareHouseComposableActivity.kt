@@ -37,10 +37,11 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import dagger.hilt.android.AndroidEntryPoint
 import org.esicad.btssio2aslam.caristsi.caristsi.data.model.Package
 import org.esicad.btssio2aslam.caristsi.caristsi.ui.warehouse.ui.theme.CaristSITheme
 
-
+@AndroidEntryPoint
 class WareHouseComposableActivity : ComponentActivity() {
 
     @OptIn(ExperimentalMaterial3Api::class)

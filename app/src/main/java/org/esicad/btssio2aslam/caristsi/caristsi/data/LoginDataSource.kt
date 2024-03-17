@@ -1,6 +1,7 @@
 package org.esicad.btssio2aslam.caristsi.caristsi.data
 
 import android.util.Log
+import org.esicad.btssio2aslam.caristsi.caristsi.data.jwt.JwtTokenManager
 import org.esicad.btssio2aslam.caristsi.caristsi.data.model.LoggedInUser
 import java.io.IOException
 import javax.inject.Inject
@@ -9,7 +10,7 @@ import javax.inject.Inject
 /**
  * Class that handles authentication w/ login credentials and retrieves user information.
  */
-class LoginDataSource @Inject constructor(private val api :ApiClient) {
+class LoginDataSource @Inject constructor(private val api :ApiClient, private val tokenManager: JwtTokenManager ) {
 
     suspend fun login(username: String, password: String): Result<LoggedInUser> {
         return try {
@@ -22,7 +23,7 @@ class LoginDataSource @Inject constructor(private val api :ApiClient) {
         }
     }
 
-    fun logout() {
-        // TODO: revoke authentication
+    suspend fun logout() {
+        tokenManager.clearAllTokens()
     }
 }

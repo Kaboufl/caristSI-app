@@ -27,7 +27,7 @@ class LoginRepository @Inject constructor(val dataSource: LoginDataSource) {
         user = null
     }
 
-    fun logout() {
+    suspend fun logout() {
         user = null
         dataSource.logout()
     }

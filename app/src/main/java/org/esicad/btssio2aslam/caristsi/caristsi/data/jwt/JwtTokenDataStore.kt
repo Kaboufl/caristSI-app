@@ -8,8 +8,9 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
+import javax.inject.Singleton
 
-
+@Singleton
 class JwtTokenDataStore @Inject constructor(private val dataStore: DataStore<Preferences>) :
     JwtTokenManager {
 
