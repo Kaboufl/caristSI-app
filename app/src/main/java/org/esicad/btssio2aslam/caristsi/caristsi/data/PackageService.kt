@@ -5,5 +5,5 @@ import retrofit2.http.GET
 
 interface PackageService {
     @GET("/packages")
-    suspend fun getPackages(): Array<Package>
+    suspend fun getPackages(): List<Package>
 }

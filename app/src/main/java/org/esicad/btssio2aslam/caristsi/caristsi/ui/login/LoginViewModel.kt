@@ -14,7 +14,8 @@ import org.esicad.btssio2aslam.caristsi.caristsi.data.Result
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(private val loginRepository: LoginRepository) : ViewModel() {
+class LoginViewModel @Inject constructor(private val loginRepository: LoginRepository) :
+    ViewModel() {
 
     private val _loginForm = MutableLiveData<LoginFormState>()
     val loginFormState: LiveData<LoginFormState> = _loginForm
@@ -30,7 +31,7 @@ class LoginViewModel @Inject constructor(private val loginRepository: LoginRepos
 
             if (result is Result.Success) {
                 _loginResult.value =
-                    LoginResult(success = LoggedInUserView(displayName = result.data.nomCarist + " " + result.data.prenomCarist))
+                    LoginResult(success = LoggedInUserView(displayName = loginRepository.getUserLabel))
             } else {
                 Log.e("C", "login failed")
                 Log.e("C", result.toString())

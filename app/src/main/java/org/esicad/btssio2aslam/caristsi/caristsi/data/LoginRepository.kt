@@ -17,6 +17,10 @@ class LoginRepository @Inject constructor(val dataSource: LoginDataSource) {
     val isLoggedIn: Boolean
         get() = user != null
 
+
+    val getUserLabel: String
+        get() = if (user != null) "${user!!.prenomCarist} ${user!!.nomCarist.uppercase()}" else ""
+
     init {
         // If user credentials will be cached in local storage, it is recommended it be encrypted
         // @see https://developer.android.com/training/articles/keystore

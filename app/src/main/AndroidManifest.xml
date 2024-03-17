@@ -26,9 +26,6 @@
             android:label="@string/title_activity_ware_house"
             android:theme="@style/Theme.CaristSI" />
         <activity
-            android:name=".ui.warehouse.WarehouseActivity"
-            android:exported="false" />
-        <activity
             android:name=".scan.QRcodeScannerActivity"
             android:exported="false" />
         <activity
@@ -51,7 +48,8 @@
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="portrait"
             android:stateNotNeeded="true"
-            tools:replace="android:screenOrientation" />
+            tools:replace="android:screenOrientation"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity" />
     </application>
 
 </manifest>
