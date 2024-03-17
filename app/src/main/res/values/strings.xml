@@ -17,4 +17,6 @@
     <string name="show_packages">Consulter les colis</string>
     <string name="title_activity_scan_package">ScanPackage</string>
     <string name="logout">Se déconnecter</string>
+    <string name="title_activity_browse_packages">BrowsePackages</string>
+    <string name="title_activity_browse">BrowseActivity</string>
 </resources>

@@ -2,13 +2,19 @@ package org.esicad.btssio2aslam.caristsi.caristsi.data
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import dagger.Provides
 import okhttp3.OkHttpClient
+import org.esicad.btssio2aslam.caristsi.caristsi.data.jwt.JwtTokenDataStore
+import org.esicad.btssio2aslam.caristsi.caristsi.data.jwt.JwtTokenDataStore_Factory
+import org.esicad.btssio2aslam.caristsi.caristsi.data.jwt.JwtTokenManager
+import org.esicad.btssio2aslam.caristsi.caristsi.data.jwt.TokenInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Singleton
 
 object ApiClient {
     private const val BASE_URL =
-        "http://192.168.1.100:8080"
+        "http://192.168.1.45:8080"
 
     private val gson: Gson by lazy {
         GsonBuilder().setLenient().create()
@@ -20,8 +26,8 @@ object ApiClient {
 
     private val httpClientAuthenticated: OkHttpClient by lazy {
         OkHttpClient.Builder()
-            //.addInterceptor(TokenInterceptor)
-     .build()
+            // .addInterceptor(TokenInterceptor(jwtTokenManager))
+            .build()
     }
 
     /**

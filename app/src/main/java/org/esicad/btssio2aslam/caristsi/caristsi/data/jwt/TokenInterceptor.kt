@@ -9,7 +9,7 @@ import javax.inject.Inject
 /**
  * Classe responsable d'intercepter les requêtes HTTP et de gérer l'authentification via JWT
  */
-class TokenInterceptor  @Inject constructor(
+class TokenInterceptor @Inject constructor(
     // on injecte le JwtTokenManager à partir de notre mécanisme de DI
     private val tokenManager: JwtTokenManager,
 ) : Interceptor {
@@ -24,7 +24,8 @@ class TokenInterceptor  @Inject constructor(
         }
 
         val request = chain.request().newBuilder()
-        request.addHeader(HEADER_AUTHORIZATION, "$TOKEN_TYPE $token")
+                            .addHeader(HEADER_AUTHORIZATION, "$TOKEN_TYPE $token")
+
         return chain.proceed(request.build())
     }
 }
