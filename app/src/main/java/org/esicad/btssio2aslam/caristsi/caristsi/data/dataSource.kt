@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Inject
 
 private const val BASE_URL =
-    "http://192.168.1.100:8080"
+    "http://192.168.1.45:8080"
 class ApiClient @Inject constructor(private val interceptor: TokenInterceptor, private val logger: LoggingInterceptor) {
 
 
