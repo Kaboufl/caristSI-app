@@ -2,11 +2,8 @@ package org.esicad.btssio2aslam.caristsi.caristsi.ui.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -28,11 +25,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import org.esicad.btssio2aslam.caristsi.caristsi.R
 import org.esicad.btssio2aslam.caristsi.caristsi.scan.QRcodeScannerActivity
-import org.esicad.btssio2aslam.caristsi.caristsi.ui.login.LoginActivity
 import org.esicad.btssio2aslam.caristsi.caristsi.ui.theme.CaristSITheme
 import org.esicad.btssio2aslam.caristsi.caristsi.ui.warehouse.WareHouseComposableActivity
 
@@ -50,7 +44,7 @@ class MainActivity : ComponentActivity() {
                     MainScaffold(back = { finish() }) {
                         MainButton(
                             onClick = {
-                              val intent = Intent(this, QRcodeScannerActivity::class.java)
+                                val intent = Intent(this, QRcodeScannerActivity::class.java)
                                 startActivity(intent)
                             },
                             label = "Scanner un colis"

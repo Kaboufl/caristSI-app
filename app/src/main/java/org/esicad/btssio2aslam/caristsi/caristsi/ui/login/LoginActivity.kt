@@ -4,15 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.View
-import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.annotation.StringRes
-import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -47,11 +44,8 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.Observer
-
 import dagger.hilt.android.AndroidEntryPoint
 import org.esicad.btssio2aslam.caristsi.caristsi.R
-import org.esicad.btssio2aslam.caristsi.caristsi.databinding.ActivityLoginBinding
-import org.esicad.btssio2aslam.caristsi.caristsi.ui.home.HomeActivity
 import org.esicad.btssio2aslam.caristsi.caristsi.ui.main.MainActivity
 import org.esicad.btssio2aslam.caristsi.caristsi.ui.theme.CaristSITheme
 

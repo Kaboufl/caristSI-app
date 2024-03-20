@@ -1,16 +1,9 @@
 package org.esicad.btssio2aslam.caristsi.caristsi.ui.home
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.widget.Button
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -31,12 +24,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import org.esicad.btssio2aslam.caristsi.caristsi.R
-import org.esicad.btssio2aslam.caristsi.caristsi.scan.QRcodeScannerActivity
 import org.esicad.btssio2aslam.caristsi.caristsi.ui.login.LoginActivity
-import org.esicad.btssio2aslam.caristsi.caristsi.ui.warehouse.WareHouseComposableActivity
 import org.esicad.btssio2aslam.caristsi.caristsi.ui.theme.CaristSITheme
 
 class HomeActivity : ComponentActivity() {
