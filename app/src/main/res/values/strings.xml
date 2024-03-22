@@ -19,4 +19,9 @@
     <string name="logout">Se déconnecter</string>
     <string name="title_activity_ware_house">Liste des colis</string>
     <string name="title_activity_main">Menu principal</string>
+    <string name="title_package_ref">Référence</string>
+    <string name="title_package_number">Identifiant</string>
+    <string name="title_package_description">Description</string>
+    <string name="post_package_failed">Echec lors de l\'ajout du colis</string>
+    <string name="post_package_success">Colis ajouté</string>
 </resources>

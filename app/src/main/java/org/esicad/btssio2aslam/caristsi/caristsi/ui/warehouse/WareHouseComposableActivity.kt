@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -22,13 +23,16 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.LargeFloatingActionButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
@@ -52,6 +56,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
 import dagger.hilt.android.AndroidEntryPoint
 import org.esicad.btssio2aslam.caristsi.caristsi.R
@@ -64,6 +69,8 @@ class WareHouseComposableActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val wareHouseViewModel: WareHouseViewModel = ViewModelProvider(this)[WareHouseViewModel::class.java]
 
         setContent {
             CaristSITheme {
@@ -102,6 +109,14 @@ class WareHouseComposableActivity : ComponentActivity() {
                                     titleContentColor = MaterialTheme.colorScheme.primary,
                                 ),
                             )
+                        }, floatingActionButton = {
+                            LargeFloatingActionButton(onClick = { wareHouseViewModel.loadPackages() }) {
+                                Icon(
+                                    Icons.Default.Refresh,
+                                    contentDescription = "Rafraîchir la liste des colis",
+                                    modifier = Modifier.size(40.dp)
+                                )
+                            }
                         }
                     ) { paddingValues ->
                         Box(modifier = Modifier.padding(paddingValues)) {
@@ -186,7 +201,8 @@ class WareHouseComposableActivity : ComponentActivity() {
             )
         }
     }
-    @Composable
+        @OptIn(ExperimentalMaterial3Api::class)
+        @Composable
         @Preview(showBackground = true)
         fun PackageListPreview() {
             CaristSITheme {
@@ -196,16 +212,59 @@ class WareHouseComposableActivity : ComponentActivity() {
                     Package(2, "autre number fictif", "article Ref 2", "article description 2")
                 )
 
-                LazyColumn(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(8.dp),
-                    verticalArrangement = Arrangement.spacedBy(16.dp)
-                ) {
-                    items(packages) { aPackage ->
-                        PackageCard(aPackage, showPackage = {})
+                Scaffold(
+                    topBar = {
+                        TopAppBar(
+                            title = {
+                                Row(
+                                    Modifier.fillMaxWidth(),
+                                    horizontalArrangement = Arrangement.Start,
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    IconButton(
+                                        onClick = { finish() }, modifier = Modifier.padding(
+                                            end = 16.dp
+                                        )
+                                    ) {
+                                        Icon(
+                                            Icons.AutoMirrored.Filled.ArrowBack,
+                                            contentDescription = "Retour"
+                                        )
+
+                                    }
+                                    Text("Liste des colis")
+                                }
+
+                            },
+                            colors = TopAppBarDefaults.topAppBarColors(
+                                containerColor = MaterialTheme.colorScheme.primaryContainer,
+                                titleContentColor = MaterialTheme.colorScheme.primary,
+                            ),
+                        )
+                    }, floatingActionButton = {
+                        LargeFloatingActionButton(onClick = {}) {
+                            Icon(
+                                Icons.Default.Refresh,
+                                contentDescription = "Rafraîchir la liste des colis",
+                                modifier = Modifier.size(40.dp)
+                            )
+                        }
+                    }
+                ) { paddingValues ->
+                    Box(modifier = Modifier.padding(paddingValues)) {
+                        LazyColumn(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(8.dp),
+                            verticalArrangement = Arrangement.spacedBy(16.dp)
+                        ) {
+                            items(packages) { aPackage ->
+                                PackageCard(aPackage, showPackage = {})
+                            }
+                        }
                     }
                 }
+
             }
         }
 
@@ -236,7 +295,10 @@ class WareHouseComposableActivity : ComponentActivity() {
 
         // on récupère la valeur du viewModel en paramètre
         val state = wareHouseViewModel.packagesState.observeAsState(listOf())
-        Log.i("warehouseactivity", "state value " + state.value.toString())
+
+        Log.i("WareHouseActivity", "State : ${state.value.size} colis")
+
+
         // Si la liste est vide - on affiche un spinner de chargement
         if (state.value.isEmpty()) {
             Column(
@@ -265,9 +327,7 @@ class WareHouseComposableActivity : ComponentActivity() {
             ) {
                 items(state.value) { aPackage ->
                     PackageCard(aPackage, showPackage = {
-                        if (aPackage.description != null && aPackage.description.isNotEmpty()) {
                             showPackageModal = true; selectedPackage = aPackage
-                        }
                     })
 
                 }
@@ -278,16 +338,16 @@ class WareHouseComposableActivity : ComponentActivity() {
         }
     }
 
-    @OptIn(ExperimentalMaterial3Api::class)
-    @Composable
-    fun PackageModal(`package`: Package, onDismiss: (Package) -> Unit, sheetState: SheetState) {
+        @OptIn(ExperimentalMaterial3Api::class)
+        @Composable
+        fun PackageModal(`package`: Package, onDismiss: (Package) -> Unit, sheetState: SheetState) {
         ModalBottomSheet(onDismissRequest = { onDismiss(`package`) }, sheetState = sheetState) {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp, vertical = 24.dp)
             ) {
-                Text(`package`.description)
+                Text(`package`.description ?: "Pas de description")
             }
         }
 

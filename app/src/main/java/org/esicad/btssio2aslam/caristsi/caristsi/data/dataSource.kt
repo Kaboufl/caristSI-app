@@ -27,6 +27,7 @@ class ApiClient @Inject constructor(private val interceptor: TokenInterceptor, p
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(httpClient)
+            // .addConverterFactory(NullOnEmptyConverterFactory())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
     }

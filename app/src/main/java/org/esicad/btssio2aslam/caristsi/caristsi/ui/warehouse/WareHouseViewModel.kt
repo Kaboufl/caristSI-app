@@ -1,6 +1,7 @@
 package org.esicad.btssio2aslam.caristsi.caristsi.ui.warehouse
 
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -35,6 +36,8 @@ class WareHouseViewModel @Inject constructor(private val api: ApiClient) : ViewM
         viewModelScope.launch {
             val list = mutableListOf<Package>()
             list.addAll(api.packageService.getPackages())
+            Log.i("WareHouseViewModel", "${list.size} colis téléchargés")
+            Log.i("WareHouseViewModel", "Colis téléchargés: \n ${list.toString()}")
             _packages.value = list
         }
     }
