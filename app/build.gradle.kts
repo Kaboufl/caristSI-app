@@ -87,6 +87,7 @@ dependencies {
 
 
     implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.accompanist.permissions)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
 
