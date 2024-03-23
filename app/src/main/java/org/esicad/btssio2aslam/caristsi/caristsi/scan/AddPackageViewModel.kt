@@ -9,8 +9,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.esicad.btssio2aslam.caristsi.caristsi.R
-import org.esicad.btssio2aslam.caristsi.caristsi.data.ApiClient
-import org.esicad.btssio2aslam.caristsi.caristsi.data.PackageDataSource
+import org.esicad.btssio2aslam.caristsi.caristsi.data.packages.PackageDataSource
 import org.esicad.btssio2aslam.caristsi.caristsi.data.Result
 import javax.inject.Inject
 

@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">Carist SI</string>
     <string name="caristSI">CaristSI</string>
-    <string name="login">Se connecter</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Login</string>
     <string name="prompt_password">Mot de passe</string>
@@ -24,4 +23,8 @@
     <string name="title_package_description">Description</string>
     <string name="post_package_failed">Echec lors de l\'ajout du colis</string>
     <string name="post_package_success">Colis ajouté</string>
+    <string name="package_scan_label">Scanner un code QR</string>
+    <string name="package_ref_label">Référence</string>
+    <string name="package_id_label">Identifiant</string>
+    <string name="package_desc_label">Description</string>
 </resources>

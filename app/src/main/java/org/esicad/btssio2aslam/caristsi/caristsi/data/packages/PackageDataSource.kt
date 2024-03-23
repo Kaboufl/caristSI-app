@@ -1,6 +1,8 @@
-package org.esicad.btssio2aslam.caristsi.caristsi.data
+package org.esicad.btssio2aslam.caristsi.caristsi.data.packages
 
 import android.util.Log
+import org.esicad.btssio2aslam.caristsi.caristsi.data.ApiClient
+import org.esicad.btssio2aslam.caristsi.caristsi.data.Result
 import org.esicad.btssio2aslam.caristsi.caristsi.data.jwt.JwtTokenManager
 import javax.inject.Inject
 import org.esicad.btssio2aslam.caristsi.caristsi.data.model.Package
@@ -20,6 +22,18 @@ class PackageDataSource @Inject constructor(
         } catch (e: Throwable) {
             e.localizedMessage?.let { Log.e("AddPackageRequest", it) }
             Result.Error(IOException("Error adding package", e))
+        }
+    }
+
+    suspend fun deletePackage(`package`: Package): Result<Any> {
+        return try {
+            val result = api.packageService.deletePackage(`package`)
+            if (result.isSuccessful) {
+                Result.Success(result)
+            } else throw Exception("HTTP error")
+        } catch (e: Throwable) {
+            e.localizedMessage?.let { Log.e("DeletePackageRequest", it) }
+            Result.Error(IOException("Error deleting package", e))
         }
     }
 }

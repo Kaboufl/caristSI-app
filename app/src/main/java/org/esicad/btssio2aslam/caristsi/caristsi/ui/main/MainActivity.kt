@@ -47,7 +47,7 @@ class MainActivity : ComponentActivity() {
                                 val intent = Intent(this, QRcodeScannerActivity::class.java)
                                 startActivity(intent)
                             },
-                            label = "Scanner un colis"
+                            label = "Stocker un colis"
                         )
                         MainButton(
                             onClick = { },

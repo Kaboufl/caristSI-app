@@ -1,5 +1,6 @@
-package org.esicad.btssio2aslam.caristsi.caristsi.data
+package org.esicad.btssio2aslam.caristsi.caristsi.data.user
 
+import org.esicad.btssio2aslam.caristsi.caristsi.data.Result
 import org.esicad.btssio2aslam.caristsi.caristsi.data.model.LoggedInUser
 import javax.inject.Inject
 

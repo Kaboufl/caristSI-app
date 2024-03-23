@@ -4,6 +4,8 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import org.esicad.btssio2aslam.caristsi.caristsi.data.jwt.TokenInterceptor
+import org.esicad.btssio2aslam.caristsi.caristsi.data.packages.PackageService
+import org.esicad.btssio2aslam.caristsi.caristsi.data.user.LoginService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Inject

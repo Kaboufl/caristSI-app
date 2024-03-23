@@ -41,6 +41,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.gson.Gson
 import com.google.zxing.integration.android.IntentIntegrator
 import dagger.hilt.android.AndroidEntryPoint
+import org.esicad.btssio2aslam.caristsi.caristsi.R
 import org.esicad.btssio2aslam.caristsi.caristsi.data.model.Package
 import org.esicad.btssio2aslam.caristsi.caristsi.scan.components.AddPackageDialog
 import org.esicad.btssio2aslam.caristsi.caristsi.scan.components.PackageCard
@@ -87,7 +88,7 @@ class QRcodeScannerActivity : ComponentActivity() {
 
                 QRcodeScanner()
                 if (showAddPackageModal.value) {
-                    addPackageViewModel.newPackage.value?.let { it ->
+                    addPackageViewModel.newPackage.value?.let {
                         AddPackageDialog(
                             // `package` = scannedPackage.value,
                             `package` = it,
@@ -114,7 +115,7 @@ class QRcodeScannerActivity : ComponentActivity() {
         val integrator = IntentIntegrator(this)
         integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)
         integrator.setOrientationLocked(false)
-        integrator.setPrompt("Scan a QR code")
+        integrator.setPrompt(getString(R.string.package_scan_label))
         integrator.setBeepEnabled(false)
         integrator.initiateScan()
     }

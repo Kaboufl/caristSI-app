@@ -15,6 +15,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.currentCompositionLocalContext
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -29,9 +30,9 @@ import org.esicad.btssio2aslam.caristsi.caristsi.ui.login.LoginActivity
 import org.esicad.btssio2aslam.caristsi.caristsi.ui.theme.CaristSITheme
 
 class HomeActivity : ComponentActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
         setContent {
             CaristSITheme {
@@ -52,7 +53,9 @@ class HomeActivity : ComponentActivity() {
                             contentDescription = "",
                             modifier = Modifier.width(280.dp)
                         )
-                        Text(text = "Carist SI 2.0", style = androidx.compose.ui.text.TextStyle(
+                        Text(
+                            text = getString(R.string.app_name),
+                            style = androidx.compose.ui.text.TextStyle(
                             color = MaterialTheme.colorScheme.primary,
                             fontWeight = FontWeight.Bold,
                             textAlign = TextAlign.Center,
