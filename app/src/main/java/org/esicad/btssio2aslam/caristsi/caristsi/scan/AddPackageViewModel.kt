@@ -44,9 +44,6 @@ class AddPackageViewModel @Inject constructor(
                 Log.e("AddPackageViewModel", result.toString())
                 _addPackageResult.value = AddPackageResult(error = R.string.post_package_failed)
             }
-
-
-
         }
     }
 }

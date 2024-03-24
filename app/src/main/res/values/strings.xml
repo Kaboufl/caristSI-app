@@ -27,4 +27,5 @@
     <string name="package_ref_label">Référence</string>
     <string name="package_id_label">Identifiant</string>
     <string name="package_desc_label">Description</string>
+    <string name="title_activity_delete_package">DeletePackageActivity</string>
 </resources>

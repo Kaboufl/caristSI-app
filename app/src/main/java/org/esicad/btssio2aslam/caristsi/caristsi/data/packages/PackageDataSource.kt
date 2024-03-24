@@ -17,7 +17,10 @@ class PackageDataSource @Inject constructor(
             val result = api.packageService.addPackage(`package`)
             if (result.isSuccessful) {
                 Result.Success(result)
-            } else throw Exception("HTTP error")
+            } else {
+                Log.e("AddPackageRequest", "HTTP Error --> ${result.code().toString()}")
+                throw Exception(result.errorBody()?.string())
+            }
 
         } catch (e: Throwable) {
             e.localizedMessage?.let { Log.e("AddPackageRequest", it) }

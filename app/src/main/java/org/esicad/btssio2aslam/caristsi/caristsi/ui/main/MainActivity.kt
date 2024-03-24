@@ -26,7 +26,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import org.esicad.btssio2aslam.caristsi.caristsi.R
-import org.esicad.btssio2aslam.caristsi.caristsi.scan.QRcodeScannerActivity
+import org.esicad.btssio2aslam.caristsi.caristsi.scan.AddPackageActivity
+import org.esicad.btssio2aslam.caristsi.caristsi.scan.DeletePackageActivity
 import org.esicad.btssio2aslam.caristsi.caristsi.ui.theme.CaristSITheme
 import org.esicad.btssio2aslam.caristsi.caristsi.ui.warehouse.WareHouseComposableActivity
 
@@ -44,13 +45,16 @@ class MainActivity : ComponentActivity() {
                     MainScaffold(back = { finish() }) {
                         MainButton(
                             onClick = {
-                                val intent = Intent(this, QRcodeScannerActivity::class.java)
+                                val intent = Intent(this, AddPackageActivity::class.java)
                                 startActivity(intent)
                             },
-                            label = "Stocker un colis"
+                            label = "Enregistrer un colis"
                         )
                         MainButton(
-                            onClick = { },
+                            onClick = {
+                                val intent = Intent(this, DeletePackageActivity::class.java)
+                                startActivity(intent)
+                            },
                             label = "Déstocker un colis"
                         )
                         MainButton(
@@ -65,28 +69,6 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-
-    /*
-    private lateinit var button : Button
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
-        button = findViewById(R.id.buttonLogin)
-        button.setOnClickListener { _ ->
-            // Do some work here
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-    }
-    */
-
 }
 
 
