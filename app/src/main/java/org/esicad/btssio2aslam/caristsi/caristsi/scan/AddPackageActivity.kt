@@ -118,7 +118,11 @@ class AddPackageActivity : ComponentActivity() {
             }
         }
 
-        ScannerScreen(backAction = { finish() }, scanAction = { scanLauncher.launch(scanOptions) })
+        ScannerScreen(
+            backAction = { finish() },
+            scanAction = { scanLauncher.launch(scanOptions) },
+            label = "Enregistrement"
+        )
     }
 
 

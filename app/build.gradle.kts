@@ -43,7 +43,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.11"
     }
     packaging {
         resources {
@@ -88,6 +88,7 @@ dependencies {
 
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.accompanist.permissions)
+    implementation(libs.androidx.foundation)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
 

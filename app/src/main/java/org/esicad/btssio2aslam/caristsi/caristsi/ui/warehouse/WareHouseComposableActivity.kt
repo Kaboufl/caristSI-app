@@ -4,8 +4,13 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.FlingBehavior
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.rememberScrollableState
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,8 +24,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Refresh
@@ -45,6 +52,7 @@ import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -118,7 +126,9 @@ class WareHouseComposableActivity : ComponentActivity() {
                             )
                         }
                     }) { paddingValues ->
-                        Box(modifier = Modifier.padding(paddingValues)) {
+                        Box(modifier = Modifier
+                            .padding(paddingValues)
+                            .fillMaxSize()) {
                             PackagesColumn()
                         }
                     }
@@ -127,7 +137,7 @@ class WareHouseComposableActivity : ComponentActivity() {
         }
     }
 
-    @OptIn(ExperimentalMaterial3Api::class)
+    @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
     @Composable
     @Preview(showBackground = true)
     fun PackageListPreview() {
@@ -176,6 +186,9 @@ class WareHouseComposableActivity : ComponentActivity() {
                 }
             }) { paddingValues ->
                 Box(modifier = Modifier.padding(paddingValues)) {
+
+
+
                     LazyColumn(
                         modifier = Modifier
                             .fillMaxSize()
@@ -193,7 +206,7 @@ class WareHouseComposableActivity : ComponentActivity() {
     }
 
 
-    @OptIn(ExperimentalMaterial3Api::class)
+    @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
     @Composable
     fun PackagesColumn(wareHouseViewModel: WareHouseViewModel = viewModel()) {
 
@@ -229,17 +242,17 @@ class WareHouseComposableActivity : ComponentActivity() {
             wareHouseViewModel.loadPackages()
         } else {
             // la liste contient des éléments => on va utiliser notre PackageComponent
-            LazyColumn(
+            Column(
                 modifier = Modifier
                     .fillMaxSize()
+                    .verticalScroll(rememberScrollState())
                     .padding(8.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                items(state.value) { aPackage ->
+                state.value.forEach { aPackage ->
                     PackageCard(aPackage, showPackage = {
                         showPackageModal = true; selectedPackage = aPackage
                     })
-
                 }
             }
             PackageModal(
@@ -255,9 +268,11 @@ class WareHouseComposableActivity : ComponentActivity() {
     fun PackageModal(`package`: Package?, onDismiss: (Package) -> Unit, sheetState: SheetState) {
         `package` ?: return
         ModalBottomSheet(onDismissRequest = { onDismiss(`package`) }, sheetState = sheetState) {
+
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
+
                     .padding(horizontal = 16.dp, vertical = 24.dp)
             ) {
                 Text(`package`.description ?: "Pas de description")
@@ -268,6 +283,12 @@ class WareHouseComposableActivity : ComponentActivity() {
     class PackagePreviewProvider : PreviewParameterProvider<List<Package>> {
         override val values: Sequence<List<Package>> = sequenceOf(
             listOf(
+                Package(1, "number fictif", "article Ref", "article description"),
+                Package(1, "number fictif", "article Ref", "article description"),
+                Package(1, "number fictif", "article Ref", "article description"),
+                Package(1, "number fictif", "article Ref", "article description"),
+                Package(1, "number fictif", "article Ref", "article description"),
+                Package(1, "number fictif", "article Ref", "article description"),
                 Package(1, "number fictif", "article Ref", "article description"),
                 Package(2, "autre number fictif", "article Ref 2", "article description 2")
             )

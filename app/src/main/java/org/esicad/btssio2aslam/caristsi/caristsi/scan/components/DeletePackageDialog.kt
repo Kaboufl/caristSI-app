@@ -86,7 +86,7 @@ fun DeletePackageDialog(
                         )
                         onConfirmRequest(newPackage)
                     }) {
-                        Text("Ajouter")
+                        Text("Déstocker")
                     }
                 }
 
