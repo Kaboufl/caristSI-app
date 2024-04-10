@@ -16,9 +16,28 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.esicad.btssio2aslam.caristsi.caristsi.R
 import org.esicad.btssio2aslam.caristsi.caristsi.data.model.Package
+import org.esicad.btssio2aslam.caristsi.caristsi.ui.theme.CaristSITheme
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewPackageCard() {
+    val `package` = Package(
+        idPackage = 0,
+        packageNumber = "453226997",
+        articleReference = "ecd76e99-9c64-4470-b91d-cd9f4021770b",
+        description = "Test package"
+    )
+    CaristSITheme {
+        PackageCard(
+            `package` = `package`,
+            showPackage = {},
+        )
+    }
+}
 
 @Composable
 fun PackageCard(

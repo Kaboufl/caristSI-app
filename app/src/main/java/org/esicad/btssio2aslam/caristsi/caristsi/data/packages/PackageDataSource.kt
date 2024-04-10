@@ -16,7 +16,7 @@ class PackageDataSource @Inject constructor(
             if (result.isSuccessful) {
                 Result.Success(result)
             } else {
-                Log.e("AddPackageRequest", "HTTP Error --> ${result.code().toString()}")
+                Log.e("AddPackageRequest", "HTTP Error --> ${result.code()}")
                 throw Exception(result.errorBody()?.string())
             }
 

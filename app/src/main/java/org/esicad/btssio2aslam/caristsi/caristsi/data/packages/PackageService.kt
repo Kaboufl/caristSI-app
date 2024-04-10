@@ -18,8 +18,4 @@ interface PackageService {
     @DELETE("/package")
     suspend fun deletePackage(@Query("packageNumber") packageNumber: String): Response<Any>
 
-    /*
-    @HTTP(method = "DELETE", path = "/package", hasBody = true)
-    suspend fun deletePackage(@Body `package`: Package): Response<Any>
-     */
 }

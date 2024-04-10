@@ -11,25 +11,39 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import org.esicad.btssio2aslam.caristsi.caristsi.data.model.Package
+import org.esicad.btssio2aslam.caristsi.caristsi.ui.theme.CaristSITheme
 
-@OptIn(ExperimentalMaterial3Api::class)
+@Preview(showBackground = true)
+@Composable
+fun PreviewDeletePackageDialog() {
+    val `package` = Package(
+        idPackage = 0,
+        packageNumber = "453226997",
+        articleReference = "ecd76e99-9c64-4470-b91d-cd9f4021770b",
+        description = "Test package"
+    )
+    CaristSITheme {
+        DeletePackageDialog(
+            `package` = `package`,
+            onDismissRequest = {},
+            onConfirmRequest = {}
+        )
+    }
+}
+
 @Composable
 fun DeletePackageDialog(
     `package`: Package,
@@ -37,7 +51,7 @@ fun DeletePackageDialog(
     onConfirmRequest: (`package`: Package) -> Unit = {}
 ) {
 
-    var description by remember {
+    val description by remember {
         mutableStateOf("")
     }
 
@@ -68,7 +82,7 @@ fun DeletePackageDialog(
                     fontSize = MaterialTheme.typography.titleLarge.fontSize
                 )
 
-                PackageCard(`package` = `package`, showPackage = { })
+                PackageCard(`package` = `package`, showPackage = { }, showIcon = false)
 
                 Row(
                     modifier = Modifier.fillMaxWidth(),
@@ -78,7 +92,7 @@ fun DeletePackageDialog(
                         Text("Annuler")
                     }
                     Button(onClick = {
-                        val newPackage: Package = Package(
+                        val newPackage = Package(
                             0,
                             `package`.packageNumber,
                             `package`.articleReference,
