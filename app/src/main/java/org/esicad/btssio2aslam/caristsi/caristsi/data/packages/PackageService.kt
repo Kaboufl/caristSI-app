@@ -5,8 +5,8 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
-import retrofit2.http.HTTP
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface PackageService {
     @GET("/packages")
@@ -16,8 +16,10 @@ interface PackageService {
     suspend fun addPackage(@Body `package`: Package): Response<Any>
 
     @DELETE("/package")
-    suspend fun deletePackage2(@Body `package`: Package): Response<Any>
+    suspend fun deletePackage(@Query("packageNumber") packageNumber: String): Response<Any>
 
+    /*
     @HTTP(method = "DELETE", path = "/package", hasBody = true)
     suspend fun deletePackage(@Body `package`: Package): Response<Any>
+     */
 }

@@ -3,14 +3,12 @@ package org.esicad.btssio2aslam.caristsi.caristsi.data.packages
 import android.util.Log
 import org.esicad.btssio2aslam.caristsi.caristsi.data.ApiClient
 import org.esicad.btssio2aslam.caristsi.caristsi.data.Result
-import org.esicad.btssio2aslam.caristsi.caristsi.data.jwt.JwtTokenManager
 import javax.inject.Inject
 import org.esicad.btssio2aslam.caristsi.caristsi.data.model.Package
 import java.io.IOException
 
 class PackageDataSource @Inject constructor(
     private val api: ApiClient,
-    private val tokenManager: JwtTokenManager
 ) {
     suspend fun addPackage(`package`: Package): Result<Any> {
         return try {
@@ -30,10 +28,10 @@ class PackageDataSource @Inject constructor(
 
     suspend fun deletePackage(`package`: Package): Result<Any> {
         return try {
-            val result = api.packageService.deletePackage(`package`)
+            val result = api.packageService.deletePackage(`package`.packageNumber)
             if (result.isSuccessful) {
                 Result.Success(result)
-            } else throw Exception("HTTP error")
+            } else throw Exception("HTTP error ${result.code()}")
         } catch (e: Throwable) {
             e.localizedMessage?.let { Log.e("DeletePackageRequest", it) }
             Result.Error(IOException("Error deleting package", e))
